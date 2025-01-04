@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="menu.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <link rel="stylesheet" href="menu.css">
+        <title>Hotel Malnad</title>
+    </head>
+    <body>
+        <section class="nav_bar" id="home">
+            <nav class="navbar" > 
+                <div>
+                <div class="logo">Hotel Malnad</div>
+            </div>
+            <div> 
+                <button class="toggle-button" onclick="toggleMenu()">☰</button> 
+                 <ul class="menu"> 
+                    <li><a href="index.html">Home</a></li>
+                    <li><input class="input_bar" type="text"></li>
+                    <li><a class="search" type="button" onclick="opendish()">Search</a></li>
+                     </ul> 
+                    </div>
+                    </nav>
+        </section>
+        <section>
+            <div class="menu_food">
+                <div class="veg">
+                    <button class="btn"  onclick="openVeg()" ondblclick="offVeg()"><h2>See vegeterian food</h2></button>
+                    <div class="veg_item">
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Ulli-Karam-Dosa.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Dosa</h4>
+                            <h3>90 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Veg fried rice.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Veg fried rice</h4>
+                            <h3>70 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\vegiCurry.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Veg Curry</h4>
+                            <h3>250 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Tamato rice.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Tamato rice</h4>
+                            <h3>80 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\materPanir.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Mater Panir</h4>
+                            <h3>280 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Chickpea curry.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Chickpea curry</h4>
+                            <h3>150 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Coconut milk rice.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Coconut milk rice</h4>
+                            <h3>120 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Butter naan.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Butter naan</h4>
+                            <h3>70 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Dokla.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Dokla</h4>
+                            <h3>170 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="n_veg">
+                    <button class="btn" onclick="openNonveg()" ondblclick="offNonveg()"><h2>See Non vegeterian food</h2></button>
+                    <div class="nveg_items">
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\chicken_biryani.jpeg">
+                        </div>
+                            <div class="content">
+                            <h4>Chicken Biryani</h4>
+                            
+                            <h3>130 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\chicken_tandori.jpeg">
+                        </div>
+                        <div class="content">
+                            <h4>Chicken Tandori</h4>
+                            <h3>250 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Chicken_Tikka_Masala_.webp">
+                        </div>
+                        <div class="content">
+                            <h4>Chicken Tikka</h4>
+                            <h3>200 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\egg_biryani.jpg">
+                        </div>
+                        <div class="content">
+                            <h4>Egg Biryani</h4>
+                            <h3>110 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Egg-Masala.jpg">
+                        </div>
+                        <div class="content">
+                            <h4>Egg Masala</h4>
+                            <h3>60 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\mutton_biryani.jpg">
+                        </div>
+                        <div class="content">
+                            <h4>Mutton Biryani</h4>
+                            <h3>170 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\fish_tawa_fry.jpeg">
+                        </div>
+                        <div class="content">
+                            <h4>Fish tawa fry</h4>
+                            <h3>120 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\fish-masala.jpg">
+                        </div>
+                        <div class="content">
+                            <h4>Fish Masala</h4>
+                            <h3>200 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\fried-chicken-kabab.avif">
+                        </div>
+                        <div class="content">
+                            <h4>Fried chicken kabab</h4>
+                            <h3>160 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sanck">
+                    <button class="btn" onclick="openSnack()" ondblclick="offSnack()"><h2>See Sancks </h2></button>
+                    <div class="snak_items">
+                    <div class="cards">
+                        <div class="images">
+                        <img src="images\Cheese balls.jpg">
+                    </div>
+                        <div class="content">
+                        <h4>Cheese balls</h4>
+                        
+                        <h3>120 Rs.</h3>
+                        <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                    </div>
+                    </div>
+                    <div class="cards">
+                        <div class="images">
+                        <img src="images\Churumuri.jpg">
+                    </div>
+                        <div class="content">
+                        <h4>Churumuri</h4>
+                        
+                        <h3>60 Rs.</h3>
+                        <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                    </div>
+                    </div>
+                    <div class="cards">
+                        <div class="images">
+                        <img src="images\Dabeli.jpg">
+                    </div>
+                        <div class="content">
+                        <h4>Dabeli</h4>
+                        
+                        <h3>40 Rs.</h3>
+                        <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                    </div>
+                    </div>
+                    <div class="cards">
+                        <div class="images">
+                        <img src="images\Spring roll.jpg">
+                    </div>
+                        <div class="content">
+                        <h4>Spring roll</h4>
+                        
+                        <h3>90 Rs.</h3>
+                        <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                    </div>
+                    </div>
+                    <div class="cards">
+                        <div class="images">
+                        <img src="images\French fries.jpg">
+                    </div>
+                        <div class="content">
+                        <h4>French fries</h4>
+                        
+                        <h3>90 Rs.</h3>
+                        <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                    </div>
+                    </div>
+                    <div class="cards">
+                        <div class="images">
+                        <img src="images\Gole bajje.jpg">
+                    </div>
+                        <div class="content">
+                        <h4>Gole bajje</h4>
+                        
+                        <h3>40 Rs.</h3>
+                        <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                    </div>
+                    </div>
+                    <div class="cards">
+                        <div class="images">
+                        <img src="images\Malai kofta.jpg">
+                    </div>
+                        <div class="content">
+                        <h4>Malai kofta</h4>
+                        
+                        <h3>70 Rs.</h3>
+                        <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                    </div>
+                    </div>
+                    <div class="cards">
+                        <div class="images">
+                        <img src="images\Masala puri.jpg">
+                    </div>
+                        <div class="content">
+                        <h4>Masala puri</h4>
+                        
+                        <h3>40 Rs.</h3>
+                        <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                    </div>
+                    </div>
+                    <div class="cards">
+                        <div class="images">
+                        <img src="images\Samosa.jpg">
+                    </div>
+                        <div class="content">
+                        <h4>Samosa</h4>
+                        
+                        <h3>30 Rs.</h3>
+                        <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                    </div>
+                    </div>
+                    
+
+                    </div>
+                </div>
+                <div class="drinks">
+                    <button class="btn_drink btn" onclick="openDrink()" ondblclick="offDrink()"><h2>See Available Juice</h2></button>
+                    <div class="drink_item">
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Badam milk.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Badam milk</h4>
+                            
+                            <h3>40 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Blueberry juice.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Blueberry juice</h4>
+                            
+                            <h3>50 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Chai.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Chai</h4>
+                            
+                            <h3>20 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Coffee.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Coffee</h4>
+                            
+                            <h3>20 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Cream milkshake.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Cream milkshake</h4>
+                            
+                            <h3>80 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Jeera water.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Jeera water</h4>
+                            
+                            <h3>30 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Mango lassi.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Mango lassi</h4>
+                            
+                            <h3>30 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Orange juice.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Orange juice</h4>
+                            
+                            <h3>30 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div>
+                        <div class="cards">
+                            <div class="images">
+                            <img src="images\Strawberry juice.jpg">
+                        </div>
+                            <div class="content">
+                            <h4>Strawberry juice</h4>
+                            
+                            <h3>30 Rs.</h3>
+                            <P style="color: red;">&#9734;&#9734;&#9734;&#9734;</P>
+                        </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="script.js"></script>    
+       
+    </body>
+</html>
