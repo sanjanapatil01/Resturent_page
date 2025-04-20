@@ -101,10 +101,30 @@
 .food_btn{
   background-color:red; 
   border: none;
-  height: 50px;
+  height: 40px;
   border-radius: 10px;
   color:white;
-  margin: 60px 70px;
+  margin-left: 230px;
+  display: block;
+}
+.login,.register{
+  
+  color: white;
+  height: 40px;
+  width: 100px;
+  margin: 20px;
+  margin-left: 120px;
+  border-radius: 10px;
+  border: none;
+}
+.login{
+  background-color: rgba(69, 13, 13, 0.597);
+}
+.register{
+  background-color: rgb(212, 165, 108);
+}
+.login:hover ,.register:hover{
+  background-color: #9b2d2dc9;
 }
 .food_btn:hover{
   background-color: rgb(251, 182, 7);
@@ -228,14 +248,7 @@ form{
   margin: auto;
   padding: 4px;
 } 
-.ul_logo li img{
-  width: 30px;
-  height: 30px;
-  mask-image: linear-gradient(to right, transparent, black 50%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 50%, transparent);
-  color: white;
-  margin:auto;
-}      
+    
 .footer .rights {
    margin-top: 50px;
     font-size: 1.5rem; 
@@ -243,8 +256,90 @@ form{
   } 
   .logos h3{
     margin-top: 80px;
-  } 
-  @media screen and (max-width:1120px){
+  }
+  .twitter{
+    font-size: 2rem;
+  }
+  .whole{
+    z-index: 1;
+    position: absolute;
+    margin-right: 10px;
+  }
+  #login{
+    margin-left: 37%;
+    padding-top: 10%;
+    color: rgb(74, 26, 36);
+  }
+  
+  .loginn{
+    position:fixed;
+    z-index: 1000;
+    background-color: rgba(240, 232, 232, 0.915);
+    
+    border:none;
+    border-radius: 10px;
+    
+  }
+  #register{
+    margin-left: 37%;
+    padding-top: 10%;
+    color: rgb(74, 26, 36);
+  }
+  
+  .registerr{
+    position:fixed;
+    z-index: 1000;
+    background-color: rgba(240, 232, 232, 0.915);
+    
+    border:none;
+    border-radius: 10px;
+    
+  }
+  .register-now{
+    display: none;
+  }
+  .login-now{
+    display: none;
+  }
+  .login-now.display{
+    display: block;
+  }
+  .register-now.displayy{
+    display: block;
+  }
+  .log{
+    width: 350px;
+    min-height: max-content;
+    margin-left: 40px;
+    border: none;
+  }
+  .log h3{
+  margin-left: 28%;
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+  .log label{
+    font-size: 1.3rem;
+    display: block;
+  }
+  .log input{
+    width: 80%;
+    height: 30px;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .log button{
+    width: 90px;
+    height: 40px;
+    margin-left: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: rgb(249, 240, 240);
+    background-color: #2b0b0bb5;
+    border: none;
+  }
+    @media screen and (max-width:1120px){
     .footer_map{
       width: 55%;
       height: 60%;
@@ -283,8 +378,33 @@ form{
     .text_food p{
       font-size: 1rem;
     }
+    #login{
+      padding-top: 90px;
+      margin-left: 27%;
+    }
+   #register{
+    margin-left: 27%;
+  
+   }
+   .food_btn{
+    margin-top: 50px;
+    margin-left: 200px;
+   }
+   .login,.register{
+ 
+    height: 30px;
+    width:80px;
+    margin: 20px;
+    margin-left: 100px;
+    
+  }
   }    
-@media screen and (max-width: 650px) { 
+@media screen and (max-width: 950px) { 
+ .whole{
+  position:absolute;
+  margin-right: 20px;
+ }
+ 
   .navbar ul { 
     flex-direction: column; 
     display: none; 
@@ -319,11 +439,12 @@ display: inline-block;
   height: 30px;
 }
 .about{
-  margin-top: 5px;
+
   display: flex;
   height: auto;
   background-color: rgb(11, 10, 10);
   margin: auto;
+  
 }
 .img_about img{
   height: 200px;
@@ -354,7 +475,7 @@ display: inline-block;
   
 }
 .about_text{
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0px auto;
 }
 .about_text h2{
@@ -384,4 +505,94 @@ display: inline-block;
        font-size: 1rem; 
        
      }
+     #login{
+      padding-top: 70px;
+      margin-left: 32%;
+    }
+   #register{
+    margin-left: 32%;
+  
+   }
+   .log{
+    width: 200px;
+   }
+   .log h3{
+    font-size: 1.3rem;
+    margin-left: 25px;
+   }
+   .log input{
+    width: 70%;
+    height: 20px;
+   }
+   .log label {
+    font-size: 0.9rem;
+   }
+   .log button{
+    font-size: 0.9rem;
+    width: 90px;
+    height: 30px;
+    margin-left: 30px;
+   }
+   .food_btn{
+    margin-top: 30px;
+    margin-left: 120px;
+   }
+   .login,.register{
+ 
+    height: 25px;
+    width:60px;
+    margin: 20px;
+    margin-left: 60px;
+    
+  }
+  } 
+@media screen and (max-width: 360px) 
+{
+  #contact,#home,#content,#about{
+    width: 88%;
+  }
+  #content,#about{
+    margin-left: 0px;
+  }
+  #login{
+    padding-top: 70px;
+    margin-left: 15%;
+  }
+ #register{
+  margin-left: 15%;
+
+ }
+ .log{
+  width: 150px;
+ }
+ .log h3{
+  font-size: 1rem;
+  margin-left: 20px;
+ }
+ .log input{
+  width: 70%;
+  height: 15px;
+ }
+ .log label {
+  font-size: 0.7rem;
+ }
+ .log button{
+  font-size: 0.8rem;
+  width: 70px;
+  height: 25px;
+  margin-left: 20px;
+ }
+ .food_btn{
+  margin-top: 30px;
+  margin-left: 30px;
+  font-size: 12px;
+ }
+ .login,.register{
+  font-size: 8px;
+  height: 20px;
+  width:40px;
+margin: 0;
+margin-left: 10px;
+  
 }
+} 
