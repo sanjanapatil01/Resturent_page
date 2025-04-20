@@ -8,6 +8,20 @@ function toggleMode()
   var ele=document.body;
  ele.classList.toggle('dark-mode');
 }
+function openLogin()
+{
+    var login = document.querySelector('.login-now');
+    login.classList.toggle('display')
+    var reg = document.querySelector('.register-now');
+    reg.classList.remove('displayy')
+}
+function openRegister()
+{
+    var reg = document.querySelector('.register-now');
+    reg.classList.toggle('displayy')
+    var login = document.querySelector('.login-now');
+    login.classList.remove('display')
+}
 function openMenu(){
   window.location.href='menu.html';
 }
