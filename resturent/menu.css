@@ -625,7 +625,7 @@ body{
 }
 
 /* Ensure proper display for very small phones */
-@media (max-width: 360px) {
+@media (max-width: 390px) {
    .navbar {
        padding: 8px;
    }
