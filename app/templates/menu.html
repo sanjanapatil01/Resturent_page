@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css\menu.css' %}">
+        <title>Hotel Malnad</title>
+        <style>
+            .custom{
+                background-color: rgba(42, 39, 39, 0.653);
+                color: white;
+                width: 120px;
+                height: 35px;
+                margin-top: 10px;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+            }
+            .custom:hover{
+                background-color: rgba(255, 249, 249, 0.621);
+                transform: scale(1.09);
+            }
+        </style>
+    </head>
+    <body>
+        <section class="nav_bar" id="home">
+            <nav class="navbar" > 
+                <div>
+                    <div class="logo">Hotel Malnad</div>
+                </div>
+                <div class="nav-right"> 
+                    <button class="toggle-button" onclick="toggleMenu()">☰</button> 
+                    <ul class="menu"> 
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><input type="text" id="input_bar" placeholder="Enter something..."></li>
+                        <li><a class="search" type="button" onclick="opendish()">Search</a></li>
+                        <li><button class="profile-btn" onclick="toggleProfile();window.location.href='#'"><i class='bx bxs-user-circle'></i></button></li>
+                    </ul> 
+                </div>
+            </nav>
+      
+            <div class="profile-dropdown" id="profileDropdown">
+                <div class="profile-header">
+                    <img src="{{data.profilepic.url}}" alt="Profile Picture" class="profile-pic">
+                    <div class="profile-info">
+                        <h3>{{data.firstName}} {{data.lastName}}</h3>
+                        <p>{{user.email}}</p>
+                         <button class="custom" onclick="window.location.href='accoounts/profile'">Edit profile</button>
+                       
+                    </div>
+                   
+                </div>
+                <div class="profile-menu">
+                    <a href="{% url 'display_collection' %}"><i class='bx bxs-collection'></i> My Collections</a>
+                    <a href="#"><i class='bx bxs-star'></i> My Ratings</a>
+                    <a href="#"><i class='bx bxs-map'></i> My Address</a>
+                    <a href="#" class="mode_change " onclick="toggleMode()"><i class='bx bxs-palette'></i> Appearance</a>
+                    <a href="{% url 'logout' %}" class="logout-btn"><i class='bx bxs-log-out'></i> Log Out</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="food">
+            <div class="menu_food">
+                <!-- Vegetarian Section -->
+           
+                <div class="veg">
+                    <button class="btn" onclick="openVeg()" ondblclick="offVeg()"><h2>See vegeterian food</h2></button>
+                    <div class="veg_item">
+                        <div class="card-container">
+                            <button class="nav-btn prev-btn" onclick="navCards('veg', 'prev')"><i class='bx bx-chevron-left'></i></button>
+                            <div class="card-wrapper" id="veg-wrapper">
+                                <!-- First Card -->
+                                {% for item in vegItems %}
+                                <div class="cards">
+                                    <div class="images">
+                                        <img src="{{ item.image.url }}" alt="{{item.name}}">
+                                        <div class="food-tag vegetarian">Veg</div>
+                                    </div>
+                                    <div class="content">
+                                        <h4>{{item.name}}</h4>
+                                        <h3>{{item.price}} Rs.</h3>
+                                        <div class="star">
+                                            <div class="star-btn">
+                                                <span class="fa fa-star" data-index="0"></span>
+                                                <span class="fa fa-star" data-index="1"></span>
+                                                <span class="fa fa-star" data-index="2"></span>
+                                                <span class="fa fa-star" data-index="3"></span>
+                                                <span class="fa fa-star" data-index="4"></span>
+                                            </div>
+                                            <div class="action-buttons">
+                                                <button class="save"><i class='bx bxs-bookmark-star'></i></button>
+                                                <button class="share"><i class='bx bxs-share-alt'></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="add">
+                                            <div class="quantity-control">
+                                                <button class="quantity-btn minus" onclick="decrementQuantity(this)">-</button>
+                                                <span class="quantity">1</span>
+                                                <button class="quantity-btn plus" onclick="incrementQuantity(this)">+</button>
+                                            </div>
+                                            <a class="add-btn" style="text-decoration:none;" href="{% url 'collectionveg' item.id %}">Add item</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %} 
+                               
+                            </div>
+                            <button class="nav-btn next-btn" onclick="navCards('veg', 'next')"><i class='bx bx-chevron-right'></i></button>
+                        </div>
+                    </div>
+                </div>
+              
+                <!-- Non-Vegetarian Section -->
+               
+                <div class="n_veg">
+                    <button class="btn" onclick="openNonveg()" ondblclick="offNonveg()"><h2>See Non vegeterian food</h2></button>
+                    <div class="nveg_items">
+                        <div class="card-container">
+                            <button class="nav-btn prev-btn" onclick="navCards('nveg', 'prev')"><i class='bx bx-chevron-left'></i></button>
+                            <div class="card-wrapper" id="nveg-wrapper">
+                                <!-- First Card -->
+                                {% for item in nonvegItems %}  
+                                <div class="cards">
+                                    <div class="images">
+                                        <img src="{{item.image.url}}" alt="{{item.name}}">
+                                        <div class="food-tag non-vegetarian">Non-Veg</div>
+                                    </div>
+                                    <div class="content">
+                                        <h4>{{item.name}}</h4>
+                                        <h3>{{item.price}} Rs.</h3>
+                                        <div class="star">
+                                            <div class="star-btn">
+                                                <span class="fa fa-star" data-index="0"></span>
+                                                <span class="fa fa-star" data-index="1"></span>
+                                                <span class="fa fa-star" data-index="2"></span>
+                                                <span class="fa fa-star" data-index="3"></span>
+                                                <span class="fa fa-star" data-index="4"></span>
+                                            </div>
+                                            <div class="action-buttons">
+                                                <button class="save"><i class='bx bxs-bookmark-star'></i></button>
+                                                <button class="share"><i class='bx bxs-share-alt'></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="add">
+                                            <div class="quantity-control">
+                                                <button class="quantity-btn minus" onclick="decrementQuantity(this)">-</button>
+                                                <span class="quantity">1</span>
+                                                <button class="quantity-btn plus" onclick="incrementQuantity(this)">+</button>
+                                            </div>
+                                           
+                                            <a class="add-btn" style="text-decoration:none;" href="{% url 'collectionveg' item.id %}">Add item</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- Second Card (Example) -->
+                               \
+                                <!-- Add more non-veg cards as needed -->
+                            </div>
+                            <button class="nav-btn next-btn" onclick="navCards('nveg', 'next')"><i class='bx bx-chevron-right'></i></button>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Snacks Section -->
+                <div class="sanck">
+                    <button class="btn" onclick="openSnack()" ondblclick="offSnack()"><h2>See Snacks</h2></button>
+                    <div class="snak_items">
+                        <div class="card-container">
+                            <button class="nav-btn prev-btn" onclick="navCards('snack', 'prev')"><i class='bx bx-chevron-left'></i></button>
+                            <div class="card-wrapper" id="snack-wrapper">
+                                <!-- First Card -->
+                            {% for item in snackItem %}
+                                <div class="cards">
+                                    <div class="images">
+                                        <img src="{{item.image.url}}" alt="{{item.name}}">
+                                        <div class="food-tag vegetarian">Snacks</div>
+                                    </div>
+                                    <div class="content">
+                                        <h4>{{item.name}}</h4>
+                                        <h3>{{item.price}} Rs.</h3>
+                                        <div class="star">
+                                            <div class="star-btn">
+                                                <span class="fa fa-star" data-index="0"></span>
+                                                <span class="fa fa-star" data-index="1"></span>
+                                                <span class="fa fa-star" data-index="2"></span>
+                                                <span class="fa fa-star" data-index="3"></span>
+                                                <span class="fa fa-star" data-index="4"></span>
+                                            </div>
+                                            <div class="action-buttons">
+                                                <button class="save"><i class='bx bxs-bookmark-star'></i></button>
+                                                <button class="share"><i class='bx bxs-share-alt'></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="add">
+                                            <div class="quantity-control">
+                                                <button class="quantity-btn minus" onclick="decrementQuantity(this)">-</button>
+                                                <span class="quantity">1</span>
+                                                <button class="quantity-btn plus" onclick="incrementQuantity(this)">+</button>
+                                            </div>
+                                            <a class="add-btn" style="text-decoration:none;" href="{% url 'collectionveg' item.id %}">Add item</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                                <!-- Second Card (Example) -->
+                               
+                                      
+                                <!-- Add more snack cards as needed -->
+                            </div>
+                            <button class="nav-btn next-btn" onclick="navCards('snack', 'next')"><i class='bx bx-chevron-right'></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drinks Section -->
+                <div class="drinks">
+                    <button class="btn_drink btn" onclick="openDrink()" ondblclick="offDrink()"><h2>See Available Juice</h2></button>
+                    <div class="drink_item">
+                        <div class="card-container">
+                            <button class="nav-btn prev-btn" onclick="navCards('drink', 'prev')"><i class='bx bx-chevron-left'></i></button>
+                            <div class="card-wrapper" id="drink-wrapper">
+                                <!-- First Card -->
+                            {% for item in drinkItem %}
+                                <div class="cards">
+                                    <div class="images">
+                                        <img src="{{item.image.url}}" alt="{{item.name}}">
+                                        <div class="food-tag beverage">Drinks</div>
+                                    </div>
+                                    <div class="content">
+                                        <h4>{{item.name}}</h4>
+                                        <h3>{{item.price}} Rs.</h3>
+                                        <div class="star">
+                                            <div class="star-btn">
+                                                <span class="fa fa-star" data-index="0"></span>
+                                                <span class="fa fa-star" data-index="1"></span>
+                                                <span class="fa fa-star" data-index="2"></span>
+                                                <span class="fa fa-star" data-index="3"></span>
+                                                <span class="fa fa-star" data-index="4"></span>
+                                            </div>
+                                            <div class="action-buttons">
+                                                <button class="save"><i class='bx bxs-bookmark-star'></i></button>
+                                                <button class="share"><i class='bx bxs-share-alt'></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="add">
+                                            <div class="quantity-control">
+                                                <button class="quantity-btn minus" onclick="decrementQuantity(this)">-</button>
+                                                <span class="quantity">1</span>
+                                                <button class="quantity-btn plus" onclick="incrementQuantity(this)">+</button>
+                                            </div>
+                                            <a class="add-btn" style="text-decoration:none;" href="{% url 'collectionveg' item.id %}">Add item</a>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}   
+                                <!-- Second Card (Example) -->
+                                
+                                <!-- Add more drink cards as needed -->
+                            </div>
+                            <button class="nav-btn next-btn" onclick="navCards('drink', 'next')"><i class='bx bx-chevron-right'></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <script src="{% static 'js\menu.js' %}"></script>
+        <script src="{% static 'js\script.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Collection</title>
+    <link rel="stylesheet" href="{% static 'css\collections.css' %}">
+    <style>
+        .insidediv button{
+            background-color: rgba(96, 25, 25, 0.856);
+            width: 70px;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            color: aliceblue;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .insidediv button:hover{
+            transform: scale(1.25);
+        }
+        .insidediv h2{
+            text-align: center;
+            margin: auto;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="collection-container">
+    <div class="insidediv" style="display: flex; text-align: center;">
+    <button onclick="window.location.href='menu'" >back</button>
+    <h2>{{user.username}} this is your Collection</h2>
+</div>
+    <div class="collection-grid">
+        {% for datas in data %}
+        <div class="collection-card">
+            <img src="{{datas.image.url}}" alt="{{datas.name}}">
+            <h3>{{datas.name}}</h3>
+            <p class="price">Rs {{datas.price}}</p>
+            <a href="{% url 'delete' datas.id %}">remove</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
