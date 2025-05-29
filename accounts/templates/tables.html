@@ -8,35 +8,363 @@
     <link rel="stylesheet" href="{% static 'css/table.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #f5f5f5;
+    }
+
+ 
+    .booking-container {
+        display: flex;
+        flex-direction: row;
+        width: 99%;
+        min-height: 100vh;
+        overflow: hidden;
+        margin: 10px;
+      
+    }
+
+    .photo-section {
+        flex: 1;
+        background-color: #e3d0d8;
+        overflow: hidden;
+        margin-left: 10px;
+    }
+
+    .photo-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+    .booking-section {
+        flex: 1;
+        background: linear-gradient(to right, #000000, #4b0000);
+        color: white;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 10px;
+    }
+
+    .reservation-label {
+        color: #ffa500;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    .booking-section h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: white;
+    }
+
+    .booking-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        color: #ccc;
+    }
+
+    .form-control {
+        padding: 0.8rem 1rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .book-btn {
+        background-color: #ffa500;
+        color: white;
+        border: none;
+        padding: 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: background-color 0.3s;
+    }
+
+    .book-btn:hover {
+        background-color: #e69500;
+    }
+
+    .table-container {
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+        background-color: #f5f5f5;
+    }
+
+    .table-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .table-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .table-btn {
+        background-color: #0f1b33;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .table-btn:hover {
+        background-color: #1e3e70;
+    }
+
+
+    @media (max-width: 992px) {
+        .booking-container {
+            flex-direction: column;
+        }
+
+        .photo-section, .booking-section {
+            width: 100%;
+            min-height: 50vh;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .form-row {
+            flex-direction: column;
+        }
+        
+        .booking-section {
+            padding: 1.5rem;
+        }
+        
+        .booking-section h1 {
+            font-size: 2rem;
+        }
+        
+        .table-container {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            padding: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .photo-section {
+            min-height: 40vh;
+            margin-right: 5px;
+            margin-left: 1px;
+            width: 95%;
+        }
+        
+        .booking-section h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .booking-section {
+            margin-right: 10px;
+            width: 95%;
+        }
+        
+        .form-control {
+            padding: 0.7rem;
+        }
+        
+        .table-container {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-left: 7px
+        }
+    }
+</style>
+
 <body>
+  
+    <div class="booking-container">
+     
+        <div class="photo-section">
+            <img src="{% static 'img/booking.jpeg' %}" alt="Restaurant couple dining">
+        </div>
+        
+     
+        <div class="booking-section">
+            <div class="reservation-label">Reservation</div>
+            <h1>Book A Table Online</h1>
+            
+            <form class="booking-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <select class="form-control" required>
+                            <option value="" hidden>Select Time</option>
+                            <option>9:00 - 10:00 AM</option>
+                            <option>10:30 - 11:30 AM</option>
+                            <option>12:00 - 1:00 PM</option>
+                            <option>1:30 - 2:30 PM</option>
+                            <option>3:00 - 4:00 PM</option>
+                            <option>4:30 - 5:30 PM</option>
+                            <option>6:00 - 7:00 PM</option>
+                            <option>7:30 - 8:30 PM</option>
+                            <option>9:00 - 10:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" required>
+                            <option value="" hidden>Number of People</option>
+                            <option>1 Person</option>
+                            <option>2 People</option>
+                            <option>3 People</option>
+                            <option>4 People</option>
+                            <option>5 People</option>
+                            <option>6 People</option>
+                            <option>7 People</option>
+                            <option>8 People</option>
+                            <option>9 People</option>
+                            <option>10 People</option>
+                            <option>More than 10</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <select class="form-control" required>
+                        <option value="" hidden>Select Table Number</option>
+                        <option>Table 1</option>
+                        <option>Table 2</option>
+                        <option>Table 3</option>
+                        <option>Table 4</option>
+                        <option>Table 5</option>
+                        <option>Table 6</option>
+                        <option>Table 7</option>
+                        <option>Table 8</option>
+                        <option>Table 9</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Special Request"></textarea>
+                </div>
+                
+                <button type="submit" class="book-btn">BOOK NOW</button>
+            </form>
+        </div>
+    </div>
+
     <div class="table-container">
-    <div class="container">
-        <button class="btn">hello suhen</button>
+        <div class="table-card">
+            <h3>Table 1</h3>
+            <p>4 Seats</p>
+            <p>Window View</p>
+            <button class="table-btn">Select</button>
+        </div>
+        <div class="table-card">
+            <h3>Table 2</h3>
+            <p>2 Seats</p>
+            <p>Intimate Setting</p>
+            <button class="table-btn">Select</button>
+        </div>
+        <div class="table-card">
+            <h3>Table 3</h3>
+            <p>6 Seats</p>
+            <p>Family Style</p>
+            <button class="table-btn">Select</button>
+        </div>
+        <div class="table-card">
+            <h3>Table 4</h3>
+            <p>8 Seats</p>
+            <p>Group Setting</p>
+            <button class="table-btn">Select</button>
+        </div>
+        <div class="table-card">
+            <h3>Table 5</h3>
+            <p>2 Seats</p>
+            <p>Private Room</p>
+            <button class="table-btn">Select</button>
+        </div>
+        <div class="table-card">
+            <h3>Table 6</h3>
+            <p>4 Seats</p>
+            <p>Central Location</p>
+            <button class="table-btn">Select</button>
+        </div>
+        <div class="table-card">
+            <h3>Table 7</h3>
+            <p>6 Seats</p>
+            <p>Near Kitchen</p>
+            <button class="table-btn">Select</button>
+        </div>
+        <div class="table-card">
+            <h3>Table 8</h3>
+            <p>10 Seats</p>
+            <p>Private Room</p>
+            <button class="table-btn">Select</button>
+        </div>
+        <div class="table-card">
+            <h3>Table 9</h3>
+            <p>4 Seats</p>
+            <p>Outdoor Patio</p>
+            <button class="table-btn">Select</button>
+        </div>
     </div>
-    <div class="container">
-        <button class="btn">hello suhen</button>
-    </div>
-    <div class="container">
-        <button class="btn">hello suhen</button>
-    </div>
-    <div class="container">
-        <button class="btn">hello suhen</button>
-    </div>
-    <div class="container">
-        <button class="btn">hello suhen</button>
-    </div>
-    <div class="container">
-        <button class="btn">hello suhen</button>
-    </div>
-    <div class="container">
-        <button class="btn">hello suhen</button>
-    </div>
-    <div class="container">
-        <button class="btn">hello suhen</button>
-    </div>
-    <div class="container">
-        <button class="btn">hello suhen</button>
-    </div>
-</div>
 </body>
 </html>

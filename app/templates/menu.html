@@ -24,6 +24,148 @@
                 background-color: rgba(255, 249, 249, 0.621);
                 transform: scale(1.09);
             }
+            .btn-all{
+                display: none;
+            }
+            @media (max-width: 768px) {
+                .nav_bar {
+    position: fixed;
+    top: 0;
+    width: 95%;
+    z-index: 1000;
+}
+.btn-all {
+    display: inline-block;
+    position: fixed;
+    top: 70px; /* Adjust the value to fit under the navbar */
+    width: 94%;
+    z-index: 999;
+    background-color: whitesmoke;
+    text-align: center;
+    padding: 10px 0;
+}
+                .phone-btn {
+                  
+                margin-left: 11px;
+                    width: max-content;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    border-radius: 15px;
+                    
+          
+                }
+   .card-wrapper {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   
+    overflow-x: scroll;
+    scrollbar-width: none; /* Hide scrollbar */
+    scroll-behavior: smooth;
+
+  }
+  
+  .cards {
+    font-size: 80;
+      display: block !important;
+      width: 80%;
+      height: 300px;
+      flex: none;
+      margin-left: 6%;
+      overflow: hidden;
+   
+  }
+  .content{
+    padding: 10px;
+  }
+  .content h4,.content .fa-star{
+    font-size: 13px;
+  }
+  .content h3{
+    font-size: 15px;
+  }
+
+  .images{
+    width: 100%;
+    height: 150px;
+       
+   }
+
+   
+   .toggle-button {
+       display: block;
+   }
+   .food{
+    background: whitesmoke;
+   }
+   
+   .menu {
+       position: absolute;
+       flex-direction: column;
+       background-color: #333333e6;
+       width: 100%;
+       top: 60px;
+       left: 0;
+       padding: 15px;
+       display: none;
+       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+       z-index: 200;
+   }
+   .menu_food{
+    background-color: whitesmoke;
+    border: none;
+    margin-top: 120px; /* Ensuring space below fixed navbar & buttons */
+    overflow-y: auto;
+    height: calc(100vh - 120px);
+   }
+   
+   .menu.active {
+       display: flex;
+   }
+   
+   .menu li {
+       margin: 8px 0;
+       width: 100%;
+   }
+   
+   #input_bar {
+       width: 100%;
+       max-width: none;
+   }
+   
+   .search {
+       width: 100%;
+       margin: 8px 0;
+   }
+   
+   .profile-dropdown {
+       width: 90%;
+       right: 5%;
+       max-width: 280px;
+   }
+ 
+   .logo {
+       font-size: 20px;
+       padding: 10px;
+   }
+   .nav-btn{
+    display: none;
+   }
+   .btn{
+  display: none;
+   }
+ 
+   .btn, .btn_drink {
+       padding: 12px;
+   }
+   
+   .btn h2, .btn_drink h2 {
+       font-size: 16px;
+   }
+}
         </style>
     </head>
     <body>
@@ -65,20 +207,27 @@
         </section>
 
         <section class="food">
+            <div class="btn-all">
+            <button onclick="openVegItem()" class="phone-btn" style="border: 2px solid green;color: green;" >Veg</button>
+            <button  onclick="openNonvegItem()" class="phone-btn" style="border: 2px solid red;color: red;">NonVeg</button>
+            <button onclick="openSnackItem()"class="phone-btn" >Snacks</button>
+            <button onclick="openDrinkItem()"class="phone-btn" style="border: 2px solid rgb(25, 66, 149);color: rgb(25, 66, 149) ;">Drinks</button>
+        </div>
             <div class="menu_food">
+        
                 <!-- Vegetarian Section -->
            
                 <div class="veg">
                     <button class="btn" onclick="openVeg()" ondblclick="offVeg()"><h2>See vegeterian food</h2></button>
                     <div class="veg_item">
-                        <div class="card-container">
-                            <button class="nav-btn prev-btn" onclick="navCards('veg', 'prev')"><i class='bx bx-chevron-left'></i></button>
+                        <div class="card-container con1">
+                            <button class="nav-btn prev-btn" ><i class='bx bx-chevron-left'></i></button>
+                            
                             <div class="card-wrapper" id="veg-wrapper">
-                                <!-- First Card -->
                                 {% for item in vegItems %}
-                                <div class="cards">
+                                <div class="cards" style="display: none;">
                                     <div class="images">
-                                        <img src="{{ item.image.url }}" alt="{{item.name}}">
+                                        <img src="{{ item.image.url }}" alt="{{item.name}}" class="image">
                                         <div class="food-tag vegetarian">Veg</div>
                                     </div>
                                     <div class="content">
@@ -103,29 +252,65 @@
                                                 <span class="quantity">1</span>
                                                 <button class="quantity-btn plus" onclick="incrementQuantity(this)">+</button>
                                             </div>
+                                           
                                             <a class="add-btn" style="text-decoration:none;" href="{% url 'collectionveg' item.id %}">Add item</a>
                                         </div>
                                     </div>
                                 </div>
-                                {% endfor %} 
-                               
+                                {% endfor %}
                             </div>
-                            <button class="nav-btn next-btn" onclick="navCards('veg', 'next')"><i class='bx bx-chevron-right'></i></button>
+                            
+                            <button class="nav-btn next-btn" id="nextVeg"><i class='bx bx-chevron-right'></i></button>
                         </div>
+
+                        
                     </div>
                 </div>
               
                 <!-- Non-Vegetarian Section -->
                
+               
                 <div class="n_veg">
-                    <button class="btn" onclick="openNonveg()" ondblclick="offNonveg()"><h2>See Non vegeterian food</h2></button>
+                    <button class="btn" onclick="openNonveg()" ondblclick="offNonveg()" ><h2>See Non vegeterian food</h2></button>
                     <div class="nveg_items">
                         <div class="card-container">
-                            <button class="nav-btn prev-btn" onclick="navCards('nveg', 'prev')"><i class='bx bx-chevron-left'></i></button>
+                            <button class="nav-btn prev-btn" id="prevNonveg"><i class='bx bx-chevron-left'></i></button>
                             <div class="card-wrapper" id="nveg-wrapper">
-                                <!-- First Card -->
+                               
                                 {% for item in nonvegItems %}  
-                                <div class="cards">
+                                <div class="cards" style="display: none;">
+                                    <div class="images">
+                                        <img src="{{ item.image.url }}" alt="{{item.name}}">
+                                        <div class="food-tag non-vegetarian">Non-Veg</div>
+                                    </div>
+                                    <div class="content">
+                                        <h4>{{item.name}}</h4>
+                                        <h3>{{item.price}} Rs.</h3>
+                                        <div class="star">
+                                            <div class="star-btn">
+                                                <span class="fa fa-star" data-index="0"></span>
+                                                <span class="fa fa-star" data-index="1"></span>
+                                                <span class="fa fa-star" data-index="2"></span>
+                                                <span class="fa fa-star" data-index="3"></span>
+                                                <span class="fa fa-star" data-index="4"></span>
+                                            </div>
+                                            <div class="action-buttons">
+                                                <button class="save"><i class='bx bxs-bookmark-star'></i></button>
+                                                <button class="share"><i class='bx bxs-share-alt'></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="add">
+                                            <div class="quantity-control">
+                                                <button class="quantity-btn minus" onclick="decrementQuantity(this)">-</button>
+                                                <span class="quantity">1</span>
+                                                <button class="quantity-btn plus" onclick="incrementQuantity(this)">+</button>
+                                            </div>
+                                           
+                                            <a class="add-btn" style="text-decoration:none;" href="{% url 'collectionveg' item.id %}">Add item</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="cards">
                                     <div class="images">
                                         <img src="{{item.image.url}}" alt="{{item.name}}">
                                         <div class="food-tag non-vegetarian">Non-Veg</div>
@@ -156,15 +341,14 @@
                                             <a class="add-btn" style="text-decoration:none;" href="{% url 'collectionveg' item.id %}">Add item</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 {% endfor %}
-                                <!-- Second Card (Example) -->
-                               \
-                                <!-- Add more non-veg cards as needed -->
+                              
                             </div>
-                            <button class="nav-btn next-btn" onclick="navCards('nveg', 'next')"><i class='bx bx-chevron-right'></i></button>
+                            <button class="nav-btn next-btn" id="nextNonveg"> <i class='bx bx-chevron-right'></i></button>
                         </div>
-                    </div>
+                  
+                </div>
                 </div>
             
                 <!-- Snacks Section -->
@@ -172,11 +356,11 @@
                     <button class="btn" onclick="openSnack()" ondblclick="offSnack()"><h2>See Snacks</h2></button>
                     <div class="snak_items">
                         <div class="card-container">
-                            <button class="nav-btn prev-btn" onclick="navCards('snack', 'prev')"><i class='bx bx-chevron-left'></i></button>
+                            <button class="nav-btn prev-btn" id="prevSnacks"><i class='bx bx-chevron-left'></i></button>
                             <div class="card-wrapper" id="snack-wrapper">
                                 <!-- First Card -->
                             {% for item in snackItem %}
-                                <div class="cards">
+                                <div class="cards" style="display: none;">
                                     <div class="images">
                                         <img src="{{item.image.url}}" alt="{{item.name}}">
                                         <div class="food-tag vegetarian">Snacks</div>
@@ -214,7 +398,7 @@
                                       
                                 <!-- Add more snack cards as needed -->
                             </div>
-                            <button class="nav-btn next-btn" onclick="navCards('snack', 'next')"><i class='bx bx-chevron-right'></i></button>
+                            <button class="nav-btn next-btn" id="nextSnacks"><i class='bx bx-chevron-right'></i></button>
                         </div>
                     </div>
                 </div>
@@ -224,11 +408,11 @@
                     <button class="btn_drink btn" onclick="openDrink()" ondblclick="offDrink()"><h2>See Available Juice</h2></button>
                     <div class="drink_item">
                         <div class="card-container">
-                            <button class="nav-btn prev-btn" onclick="navCards('drink', 'prev')"><i class='bx bx-chevron-left'></i></button>
+                            <button class="nav-btn prev-btn" id="prevDrinks"><i class='bx bx-chevron-left'></i></button>
                             <div class="card-wrapper" id="drink-wrapper">
                                 <!-- First Card -->
                             {% for item in drinkItem %}
-                                <div class="cards">
+                                <div class="cards" style="display: none;">
                                     <div class="images">
                                         <img src="{{item.image.url}}" alt="{{item.name}}">
                                         <div class="food-tag beverage">Drinks</div>
@@ -264,7 +448,7 @@
                                 
                                 <!-- Add more drink cards as needed -->
                             </div>
-                            <button class="nav-btn next-btn" onclick="navCards('drink', 'next')"><i class='bx bx-chevron-right'></i></button>
+                            <button class="nav-btn next-btn" id="nextDrinks" ><i class='bx bx-chevron-right'></i></button>
                         </div>
                     </div>
                 </div>
@@ -273,5 +457,32 @@
     
         <script src="{% static 'js\menu.js' %}"></script>
         <script src="{% static 'js\script.js' %}"></script>
+        <script>
+            function openVegItem() {
+    document.querySelector('.veg_item').style.display = 'block';
+    document.querySelector('.nveg_items').style.display = 'none';
+    document.querySelector('.snak_items').style.display = 'none';
+    document.querySelector('.drink_item').style.display = 'none';
+ }
+ function openNonvegItem() {
+    document.querySelector('.veg_item').style.display = 'none';
+    document.querySelector('.nveg_items').style.display = 'block';
+    document.querySelector('.snak_items').style.display = 'none';
+    document.querySelector('.drink_item').style.display = 'none';
+ }
+ function openSnackItem() {
+    document.querySelector('.veg_item').style.display = 'none';
+    document.querySelector('.nveg_items').style.display = 'none';
+    document.querySelector('.snak_items').style.display = 'block';
+    document.querySelector('.drink_item').style.display = 'none';
+ }
+ function openDrinkItem() {
+    document.querySelector('.veg_item').style.display = 'none';
+    document.querySelector('.nveg_items').style.display = 'none';
+    document.querySelector('.snak_items').style.display = 'none';
+    document.querySelector('.drink_item').style.display = 'block';
+ }
+
+        </script>
     </body>
 </html>

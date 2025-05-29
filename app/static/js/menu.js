@@ -1,6 +1,120 @@
 const availableDishes = [
    "dosa", "chicken biryani", "cheese balls", "badam milk"
 ];
+// Define pagination indexes for each section
+let currentIndexVeg = 0;
+let currentIndexNonVeg = 0;
+let currentIndexSnacks = 0;
+let currentIndexDrinks = 0;
+
+const itemsPerPage = 3;
+
+// Query selectors for different sections
+const vegItems = document.querySelectorAll('.veg .cards');
+const nonVegItems = document.querySelectorAll('.n_veg .cards');
+const snackItems = document.querySelectorAll('.sanck .cards'); // Ensure correct class name
+const drinkItems = document.querySelectorAll('.drinks .cards');
+
+console.log("Total veg cards found:", vegItems.length);
+console.log("Total non-veg cards found:", nonVegItems.length);
+console.log("Total snack items found:", snackItems.length);
+console.log("Total drink items found:", drinkItems.length);
+
+// Update visibility function for Veg
+function updateVisibleVegItems() {
+    vegItems.forEach((item, index) => {
+        item.style.display = (index >= currentIndexVeg && index < currentIndexVeg + itemsPerPage) ? 'block' : 'none';
+    });
+}
+
+// Update visibility function for Non-Veg
+function updateVisibleNonVegItems() {
+    nonVegItems.forEach((item, index) => {
+        item.style.display = (index >= currentIndexNonVeg && index < currentIndexNonVeg + itemsPerPage) ? 'block' : 'none';
+    });
+}
+
+// Update visibility function for Snacks
+function updateVisibleSnackItems() {
+    snackItems.forEach((item, index) => {
+        item.style.display = (index >= currentIndexSnacks && index < currentIndexSnacks + itemsPerPage) ? 'block' : 'none';
+    });
+}
+
+// Update visibility function for Drinks
+function updateVisibleDrinkItems() {
+    drinkItems.forEach((item, index) => {
+        item.style.display = (index >= currentIndexDrinks && index < currentIndexDrinks + itemsPerPage) ? 'block' : 'none';
+    });
+}
+
+// Pagination functions for Veg
+function nextVegPage() {
+    currentIndexVeg = (currentIndexVeg + itemsPerPage < vegItems.length) ? currentIndexVeg + itemsPerPage : 0;
+    updateVisibleVegItems();
+}
+
+function prevVegPage() {
+    currentIndexVeg = (currentIndexVeg - itemsPerPage >= 0) ? currentIndexVeg - itemsPerPage : 0;
+    updateVisibleVegItems();
+}
+
+// Pagination functions for Non-Veg
+function nextNonVegPage() {
+    currentIndexNonVeg = (currentIndexNonVeg + itemsPerPage < nonVegItems.length) ? currentIndexNonVeg + itemsPerPage : 0;
+    updateVisibleNonVegItems();
+}
+
+function prevNonVegPage() {
+    currentIndexNonVeg = (currentIndexNonVeg - itemsPerPage >= 0) ? currentIndexNonVeg - itemsPerPage : 0;
+    updateVisibleNonVegItems();
+}
+
+// Pagination functions for Snacks
+function nextSnackPage() {
+    currentIndexSnacks = (currentIndexSnacks + itemsPerPage < snackItems.length) ? currentIndexSnacks + itemsPerPage : 0;
+    updateVisibleSnackItems();
+}
+
+function prevSnackPage() {
+    currentIndexSnacks = (currentIndexSnacks - itemsPerPage >= 0) ? currentIndexSnacks - itemsPerPage : 0;
+    updateVisibleSnackItems();
+}
+
+// Pagination functions for Drinks
+function nextDrinkPage() {
+    currentIndexDrinks = (currentIndexDrinks + itemsPerPage < drinkItems.length) ? currentIndexDrinks + itemsPerPage : 0;
+    updateVisibleDrinkItems();
+}
+
+function prevDrinkPage() {
+    currentIndexDrinks = (currentIndexDrinks - itemsPerPage >= 0) ? currentIndexDrinks - itemsPerPage : 0;
+    updateVisibleDrinkItems();
+}
+
+// Initialize visibility on page load
+document.addEventListener("DOMContentLoaded", () => {
+    updateVisibleVegItems();
+    updateVisibleNonVegItems();
+    updateVisibleSnackItems();
+    updateVisibleDrinkItems();
+});
+
+// Event listeners for Veg
+document.getElementById("nextVeg").addEventListener("click", nextVegPage);
+document.getElementById("prevVeg").addEventListener("click", prevVegPage);
+
+// Event listeners for Non-Veg
+document.getElementById("nextNonveg").addEventListener("click", nextNonVegPage);
+document.getElementById("prevNonveg").addEventListener("click", prevNonVegPage);
+
+// Event listeners for Snacks
+document.getElementById("nextSnacks").addEventListener("click", nextSnackPage);
+document.getElementById("prevSnacks").addEventListener("click", prevSnackPage);
+
+// Event listeners for Drinks
+document.getElementById("nextDrinks").addEventListener("click", nextDrinkPage);
+document.getElementById("prevDrinks").addEventListener("click", prevDrinkPage);
 
 
 function opendish() {
@@ -137,6 +251,7 @@ function closeProfileDropdown(event) {
 function openVeg() {
    document.querySelector('.veg_item').style.display = 'block';
 }
+
 
 function offVeg() {
    document.querySelector('.veg_item').style.display = 'none';
